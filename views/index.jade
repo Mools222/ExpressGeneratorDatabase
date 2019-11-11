@@ -1,0 +1,77 @@
+extends layout
+
+block content
+    ul
+        li
+            a.active(href='/') Start
+        li
+            a(href='/fs_table') Foodstuffs Table
+        li
+            a(href='/orders_table') Orders Table
+        li
+            a(href='/api/foodstuffs') Foodstuffs JSON
+    div.content
+        h1 First time visiting? Create the database!
+        .formContainer <!-- [This is a div with class="formContainer"]-->
+            form(action='/', method='post')
+                <!-- [I made these input elements readonly after realizing all the CRUD methods in databaseMySQLCallbacks.js wouldn't work if someone were to choose a different host, user and/or password]-->
+                label(for='host') Host:
+                input#host(type='text', name='host', value='localhost' readonly)
+                label(for='user') User:
+                input#user(type='text', name='user', value='root' readonly)
+                label(for='password') Password:
+                input#password(type='text', name='password', value='' readonly)
+                input(type='submit', value='Create Database')
+        if databaseCreated
+            h2 Database created!
+        hr
+        h1 API
+        table
+            tbody
+                tr
+                    th Endpoint
+                    th Request type
+                    th Description
+                tr
+                    td /api/foodstuffs/
+                    td GET
+                    td Show all foodstuffs
+                tr
+                    td /api/foodstuffs/
+                    td POST
+                    td Receives a new foodstuff object and displays it
+                tr
+                    td /api/foodstuffs/:id
+                    td GET
+                    td Shows a foodstuff object with ID :id
+                tr
+                    td /api/foodstuffs/:id
+                    td PUT
+                    td Receives an updated foodstuff object with ID :id and displays it
+                tr
+                    td /api/foodstuffs/:id
+                    td DELETE
+                    td Deletes a foodstuff objects and displays: "Foodstuff ID :id is deleted!"
+        hr
+        h1 API Examples
+        h2 1. Read all foodstuffs
+        p HTTP method: GET
+        p URL: http://localhost:3000/api/foodstuffs/
+        p Body: Empty
+        h2 2. Create new foodstuff
+        p HTTP method: POST
+        p URL: http://localhost:3000/api/foodstuffs/
+        p Body: {"name":"Insert name","price":"Insert price"}
+        p Note that ID is auto-generated.
+        h2 3. Read specific foodstuff
+        p HTTP method: GET
+        p URL: http://localhost:3000/api/foodstuffs/1
+        p Body: Empty
+        h2 4. Update specific foodstuff
+        p HTTP method: PUT
+        p URL: http://localhost:3000/api/foodstuffs/1
+        p Body: {"name":"Insert updated name","price":"Insert updated price"}
+        h2 5. Delete specific foodstuff
+        p HTTP method: DELETE
+        p URL: http://localhost:3000/api/foodstuffs/1
+        p Body: Empty

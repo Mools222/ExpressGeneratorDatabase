@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    ul
+        li
+            a(href='/') Start
+        li
+            a.active(href='/fs_table') Foodstuffs Table
+        li
+            a(href='/orders_table') Orders Table
+        li
+            a(href='/api/foodstuffs') Foodstuffs JSON
+    div.content
+        h1 Foodstuffs Table
+        table
+            thead
+                tr
+                    th Foodstuff ID
+                    th Item
+                    th Price
+            tbody
+                each item in items
+                    tr
+                        td #{item.fs_id}
+                        td #{item.fs_name}
+                        td #{item.fs_price}

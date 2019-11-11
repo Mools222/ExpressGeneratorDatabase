@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    ul
+        li
+            a(href='/') Start
+        li
+            a(href='/fs_table') Foodstuffs Table
+        li
+            a(href='/orders_table') Orders Table
+        li
+            a(href='/api/foodstuffs') Foodstuffs JSON
+    div.content
+        h1= message
+        h2= error.status
+        pre #{error.stack}
