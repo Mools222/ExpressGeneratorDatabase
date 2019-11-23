@@ -2,18 +2,26 @@ var express = require('express');
 var router = express.Router();
 
 // const database = require('../databaseMySQLCallbacks');
-const database = require('../databaseMySQLPromises');
+// const database = require('../databaseMySQLPromises');
+const database = require('../databaseSequelize');
 
 // Get all foodstuffs
-router.get('/', function (req, res, next) {
-    database.read("foodstuffs")
-        .then(value => res.send(value))
-        .catch(reason => next(reason));
-});
+// router.get('/', function (req, res, next) {
+//     database.read("foodstuffs")
+//         .then(value => res.send(value))
+//         .catch(reason => next(reason));
+// });
 
-// Get specific foodstuff
-router.get('/:id', function (req, res, next) {
-    database.read("foodstuffs", req.params.id)
+// // Get specific foodstuff
+// router.get('/:id', function (req, res, next) {
+//     database.read("foodstuffs", req.params.id)
+//         .then(value => res.send(value))
+//         .catch(reason => next(reason));
+// });
+
+// Get all foodstuffs + Get specific foodstuff
+router.get('/:id?', function (req, res, next) { // "?" means the parameter is optional
+    database.read("foodstuffs", (req.params.id ? req.params.id : null))
         .then(value => res.send(value))
         .catch(reason => next(reason));
 });

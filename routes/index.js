@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 // const database = require('../databaseMySQLCallbacks');
-const database = require('../databaseMySQLPromises');
+// const database = require('../databaseMySQLPromises');
+const database = require('../databaseSequelize');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
